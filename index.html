@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Player</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+        #player { width: 100%; height: 100%; }
+    </style>
+    <!-- Load Ruffle from your uploaded file -->
+    <script src="ruffle.js"></script>
+</head>
+<body>
+    <div id="player"></div>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("player");
+            container.appendChild(player);
+            // Replace with the exact name of your uploaded SWF file
+            player.load("happy_wheels.swf"); 
+        });
+    </script>
+</body>
+</html>
