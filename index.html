@@ -1,30 +1,53 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-<style>
-html, body {
-margin:0px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Player</title>
+    <!-- Load the Ruffle emulator library -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        /* Force the page and container to take up 100% of the browser window */
+        html, body, #container {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000; /* Optional: adds a black background behind the player */
+            overflow: hidden; /* Prevents accidental scrollbars */
+        }
+    </style>
 </head>
 <body>
-<script>
-window.RufflePlayer = window.RufflePlayer || {};
-//Below code forces autoplay, no splashscreen and allows sound
 
-window.RufflePlayer.config = {
-"autoplay": "off","splashScreen": false,"unmuteOverlay": "hidden","quality": "medium" };
-// End custom configuration code above
-window.addEventListener("load", (event) => {
-const ruffle = window.RufflePlayer.newest();
-const player = ruffle.createPlayer();
-const container = document.getElementById("container");
-container.appendChild(player);
-player.load("547504_hw_demo.swf");
-player.style.width = "100%";
-player.style.height = "100%";
-});
-</script>
-<div id="container"></div>
+    <div id="container"></div>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        
+        // Ruffle Configuration
+        window.RufflePlayer.config = {
+            "autoplay": "on",          // Changed to "on" so it plays automatically on your webpage
+            "splashScreen": false,     // Disables the Ruffle loading splash screen
+            "unmuteOverlay": "hidden", // Hides the "Click to unmute" overlay if possible
+            "quality": "medium"        // Sets rendering quality
+        };
+
+        // Initialize the player once the window loads
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("container");
+            
+            container.appendChild(player);
+            
+            // Load your specific SWF file URL
+            player.load("547504_hw_demo.swf");
+            
+            // Make the player element fill the container
+            player.style.width = "100%";
+            player.style.height = "100%";
+        });
+    </script>
 </body>
 </html>
